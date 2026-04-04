@@ -236,14 +236,17 @@ SIMPLE_JWT = {
 # -------------------------
 # EMAIL_SERVICE
 # -------------------------
-EMAIL_BACKEND = config("EMAIL_BACKEND")
-EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+EMAIL_HOST = config("EMAIL_HOST", default="")
 EMAIL_PORT = config("EMAIL_PORT", cast=int, default=587)
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=True)
 EMAIL_USE_SSL = config("EMAIL_USE_SSL", cast=bool, default=False)
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
-DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
-EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="no-reply@example.com")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+BREVO_API_KEY = config("BREVO_API_KEY", default="")
+BREVO_SENDER_EMAIL = config("BREVO_SENDER_EMAIL", default=DEFAULT_FROM_EMAIL)
+BREVO_SENDER_NAME = config("BREVO_SENDER_NAME", default="Auth Service")
 EMAIL_TOKEN_RESET_TIMEOUT= 120
 
 
@@ -303,10 +306,10 @@ CHANNEL_LAYERS = {
 import ssl
 CELERY_BROKER_URL = config("CELERY_BROKER_URL", default="redis://127.0.0.1:6379/1")
 CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND", default="redis://127.0.0.1:6379/1")
-CELERY_BROKER_USE_SSL = {
-    "ssl_cert_reqs": ssl.CERT_NONE
-}
+# CELERY_BROKER_USE_SSL = {
+#     "ssl_cert_reqs": ssl.CERT_NONE
+# }
 
-CELERY_REDIS_BACKEND_USE_SSL = {
-    "ssl_cert_reqs": ssl.CERT_NONE
-}
+# CELERY_REDIS_BACKEND_USE_SSL = {
+#     "ssl_cert_reqs": ssl.CERT_NONE
+# }
