@@ -8,7 +8,7 @@ echo "Collecting static files..."
 python manage.py collectstatic --no-input
 
 echo "Running migrations..."
-python manage.py migrate --no-input --run-syncdb
+python manage.py migrate --no-input
 
 echo "Creating superuser if not exists..."
 python manage.py shell << END
